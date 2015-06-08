@@ -88,6 +88,33 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Scegli Cartella.
+        /// </summary>
+        public static string btnChooseFolder {
+            get {
+                return ResourceManager.GetString("btnChooseFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Nome File.
+        /// </summary>
+        public static string dgHeader_File {
+            get {
+                return ResourceManager.GetString("dgHeader_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Ordine.
+        /// </summary>
+        public static string dgHeader_Number {
+            get {
+                return ResourceManager.GetString("dgHeader_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a File da unire.
         /// </summary>
         public static string grpBoxFile_Header {
@@ -102,6 +129,33 @@ namespace UnisciPdf.Properties {
         public static string grpBoxOptions_Header {
             get {
                 return ResourceManager.GetString("grpBoxOptions_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Nome File di destinazione.
+        /// </summary>
+        public static string lblDestinationFileName {
+            get {
+                return ResourceManager.GetString("lblDestinationFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Selezionare la cartella di destinazione.
+        /// </summary>
+        public static string lblDestinationFolder {
+            get {
+                return ResourceManager.GetString("lblDestinationFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Trascinare in questa zona i file pdf.
+        /// </summary>
+        public static string lblfileDragDrop_Instructions {
+            get {
+                return ResourceManager.GetString("lblfileDragDrop_Instructions", resourceCulture);
             }
         }
     }

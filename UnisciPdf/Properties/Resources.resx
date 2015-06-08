@@ -120,16 +120,34 @@
   <data name="AppTitle" xml:space="preserve">
     <value>Unisci PDF</value>
   </data>
+  <data name="btnChooseFolder" xml:space="preserve">
+    <value>Scegli Cartella</value>
+  </data>
   <data name="btn_CreateFile" xml:space="preserve">
     <value>Crea PDF unito</value>
   </data>
   <data name="btn_Reset" xml:space="preserve">
     <value>Annulla</value>
   </data>
+  <data name="dgHeader_File" xml:space="preserve">
+    <value>Nome File</value>
+  </data>
+  <data name="dgHeader_Number" xml:space="preserve">
+    <value>Ordine</value>
+  </data>
   <data name="grpBoxFile_Header" xml:space="preserve">
     <value>File da unire</value>
   </data>
   <data name="grpBoxOptions_Header" xml:space="preserve">
     <value>Opzioni</value>
+  </data>
+  <data name="lblDestinationFileName" xml:space="preserve">
+    <value>Nome File di destinazione</value>
+  </data>
+  <data name="lblDestinationFolder" xml:space="preserve">
+    <value>Selezionare la cartella di destinazione</value>
+  </data>
+  <data name="lblfileDragDrop_Instructions" xml:space="preserve">
+    <value>Trascinare in questa zona i file pdf</value>
   </data>
 </root>
