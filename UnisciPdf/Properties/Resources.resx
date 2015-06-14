@@ -141,13 +141,19 @@
   <data name="grpBoxOptions_Header" xml:space="preserve">
     <value>Opzioni</value>
   </data>
+  <data name="lblCompression" xml:space="preserve">
+    <value>Compressione</value>
+  </data>
   <data name="lblDestinationFileName" xml:space="preserve">
-    <value>Nome File di destinazione</value>
+    <value>Nome File di destinazione (.pdf)</value>
   </data>
   <data name="lblDestinationFolder" xml:space="preserve">
     <value>Selezionare la cartella di destinazione</value>
   </data>
   <data name="lblfileDragDrop_Instructions" xml:space="preserve">
     <value>Trascinare in questa zona i file pdf</value>
+  </data>
+  <data name="lblWait" xml:space="preserve">
+    <value>Attendere prego...</value>
   </data>
 </root>

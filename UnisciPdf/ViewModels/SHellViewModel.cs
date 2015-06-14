@@ -7,17 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using UnisciPdf.BusinessLogic;
 using UnisciPdf.Model;
 
 namespace UnisciPdf.ViewModels
 {
+
     public class ShellViewModel : PropertyChangedBase, IHaveDisplayName
     {
 
+        public ShellViewModel()
+        {
+            this.fileIdentificationService = new FileIdentificationService();
+            this.pdfService = new PdfService();
+            this.PdfCompressionOptions = pdfService.GetDefaultCompressionOptions();
+        }
+
+
         #region Variables
-        FileIdentificationService fileIdentificationService = new FileIdentificationService();
-        PdfService pdfService = new PdfService();
+        FileIdentificationService fileIdentificationService;
+        PdfService pdfService;
 
         #endregion
 
@@ -95,14 +105,62 @@ namespace UnisciPdf.ViewModels
             }
         }
 
+
+
+        private bool compressionEnabled = false;
+        public bool CompressionEnabled
+        {
+            get { return compressionEnabled; }
+            set
+            {
+                if (compressionEnabled != value)
+                {
+                    compressionEnabled = value;
+                    NotifyOfPropertyChange(() => this.CompressionEnabled);
+                }
+            }
+        }
+
+
+
+        private string imageQuality = null;
+        public string ImageQuality
+        {
+            get { return imageQuality; }
+            set
+            {
+                if (imageQuality != value)
+                {
+                    imageQuality = value;
+                    NotifyOfPropertyChange(() => this.ImageQuality);
+                }
+            }
+        }
+
+
+
+        private PdfCompressionOptions pdfCompressionOptions = null;
+        public PdfCompressionOptions PdfCompressionOptions
+        {
+            get { return pdfCompressionOptions; }
+            set
+            {
+                if (pdfCompressionOptions != value)
+                {
+                    pdfCompressionOptions = value;
+                    NotifyOfPropertyChange(() => this.PdfCompressionOptions);
+                }
+            }
+        }
+
         #endregion
 
         #region Actions
 
         public void Reset()
         {
-
-
+            FileList.Clear();
+            DestinationFileName = string.Empty;
         }
 
         public bool CanReset
@@ -112,8 +170,16 @@ namespace UnisciPdf.ViewModels
 
         public void CreateFile()
         {
+            this.ShellIsBusy = true;
             List<string> fileListOrdered = FileList.OrderBy(d => d.Number).Select(d => d.FileFullPath).ToList();
-            pdfService.MergePdf(fileListOrdered, Path.Combine(DestinationFilePath, DestinationFileName), null);
+
+            Task.Run(() =>
+            {
+                pdfService.MergePdf(fileListOrdered, Path.Combine(DestinationFilePath, DestinationFileName), this.PdfCompressionOptions);
+            }).ContinueWith((task) =>
+            {
+                this.ShellIsBusy = false;
+            });
         }
 
         public bool CanCreateFile
@@ -129,11 +195,50 @@ namespace UnisciPdf.ViewModels
                 if (string.IsNullOrWhiteSpace(DestinationFileName))
                     return false;
 
+                if (Path.GetExtension(DestinationFileName) == null || Path.GetExtension(DestinationFileName).ToLower() != ".pdf")
+                    return false;
+
                 return true;
             }
 
         }
         #endregion
+
+        public void FileNumberEditEnding(DataGridCellEditEndingEventArgs e, object dataContext)
+        {
+
+            if (e.EditAction == DataGridEditAction.Commit && e.EditingElement != null)
+            {
+                FileAndOrder value = e.EditingElement.DataContext as FileAndOrder;
+
+                if (value != null)
+                {
+                    var list = new List<FileAndOrder>(this.FileList.OrderBy(f => f.Number));
+
+                    //// collection does not start from 1
+                    //if (!list.Any(f => f.Number == 1))
+                    //{
+                    //    list = list.OrderBy(f => f.Number).ToList();
+                    //    int number = 1;
+                    //    foreach (var item in list)
+                    //    {
+                    //        if (item != value)
+                    //            item.Number = number++;
+
+                    //        if (number == value.Number)
+                    //            ++number;
+                    //    }
+                    //    list = list.OrderBy(f => f.Number).ToList();
+                    //}
+
+
+                    this.FileList = new ObservableCollection<FileAndOrder>(list);
+
+                }
+
+            }
+
+        }
 
 
         #region Drag&Drop

@@ -133,7 +133,16 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Nome File di destinazione.
+        ///   Cerca una stringa localizzata simile a Compressione.
+        /// </summary>
+        public static string lblCompression {
+            get {
+                return ResourceManager.GetString("lblCompression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Nome File di destinazione (.pdf).
         /// </summary>
         public static string lblDestinationFileName {
             get {
@@ -156,6 +165,15 @@ namespace UnisciPdf.Properties {
         public static string lblfileDragDrop_Instructions {
             get {
                 return ResourceManager.GetString("lblfileDragDrop_Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Attendere prego....
+        /// </summary>
+        public static string lblWait {
+            get {
+                return ResourceManager.GetString("lblWait", resourceCulture);
             }
         }
     }

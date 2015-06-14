@@ -26,6 +26,8 @@ namespace UnisciPdf.Views
             InitializeComponent();
         }
 
+
+
         private void SelectFolder_Click(object sender, RoutedEventArgs e)
         {
             Ookii.Dialogs.Wpf.VistaFolderBrowserDialog d = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();

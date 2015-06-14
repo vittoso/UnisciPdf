@@ -51,13 +51,19 @@
                                 <cal:Parameter Value="$eventArgs"></cal:Parameter>
                             </cal:ActionMessage>
                         </i:EventTrigger>
-                     </i:Interaction.Triggers>
-                        <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="Number" Header="{x:Static prop:Resources.dgHeader_Number}"  Binding="{Binding Number}" />
-                        <DataGridTextColumn x:Name="FileName" Header="{x:Static prop:Resources.dgHeader_File}" Binding="{Binding FileName}"/>
+                        <i:EventTrigger EventName="CellEditEnding">
+                            <cal:ActionMessage MethodName="FileNumberEditEnding">
+                                <cal:Parameter Value="$eventArgs"></cal:Parameter>
+                                <cal:Parameter Value="$dataContext"></cal:Parameter>
+                            </cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="Number" Header="{x:Static prop:Resources.dgHeader_Number}"  Binding="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" IsReadOnly="false"/>
+                        <DataGridTextColumn x:Name="FileName" Header="{x:Static prop:Resources.dgHeader_File}" Binding="{Binding FileName}" Width="*" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                
+
             </Grid>
         </GroupBox>
         <GroupBox Grid.Column="3" Grid.Row="1" Header="{x:Static prop:Resources.grpBoxOptions_Header}" >
@@ -68,16 +74,34 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-       
+
                 <Label Grid.Row="0" Content="{x:Static prop:Resources.lblDestinationFolder}"/>
                 <Button Grid.Row="1" x:Name="SelectFolder" Content="{x:Static prop:Resources.btnChooseFolder}" Width="80" Click="SelectFolder_Click"/>
                 <Label Grid.Row="2" HorizontalAlignment="Stretch"  x:Name="DestinationFilePath"></Label>
                 <Label Grid.Row="3" Content="{x:Static prop:Resources.lblDestinationFileName}"/>
                 <TextBox Grid.Row="4" x:Name="DestinationFileName" />
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="{x:Static prop:Resources.lblCompression}"/>
+                    <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="CompressionEnabled"  IsChecked="{Binding Path=PdfCompressionOptions.CompressionEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+
+                <Grid Grid.Row="6"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
             </Grid>
-           
+
         </GroupBox>
 
         <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3">
@@ -92,7 +116,8 @@
         </Grid>
 
         <xctk:BusyIndicator x:Name="Busy" IsBusy="{Binding Path=ShellIsBusy, Mode=OneWay,
-                                                UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="10" Grid.ColumnSpan="5">
+                                                UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="10" Grid.ColumnSpan="5" 
+                            BusyContent="{x:Static prop:Resources.lblWait}">
         </xctk:BusyIndicator>
     </Grid>
 </Window>
