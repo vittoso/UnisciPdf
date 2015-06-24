@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnisciPdf", "UnisciPdf\Unis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnisciPdf.Test", "UnisciPdf.Test\UnisciPdf.Test.csproj", "{F2C249BD-1A00-4487-A684-D8CC00978DD3}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UnisciPdf.Setup", "Setup\Setup.vdproj", "{58DE578C-D6F9-479D-ADE4-63AD8C86C6CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{F2C249BD-1A00-4487-A684-D8CC00978DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2C249BD-1A00-4487-A684-D8CC00978DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2C249BD-1A00-4487-A684-D8CC00978DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58DE578C-D6F9-479D-ADE4-63AD8C86C6CC}.Debug|Any CPU.ActiveCfg = Debug
+		{58DE578C-D6F9-479D-ADE4-63AD8C86C6CC}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

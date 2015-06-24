@@ -213,7 +213,7 @@ namespace UnisciPdf.ViewModels
 
                 if (value != null)
                 {
-                    var list = new List<FileAndOrder>(this.FileList.OrderBy(f => f.Number));
+                   // var list = new List<FileAndOrder>(this.FileList.OrderBy(f => f.Number));
 
                     //// collection does not start from 1
                     //if (!list.Any(f => f.Number == 1))
@@ -232,7 +232,7 @@ namespace UnisciPdf.ViewModels
                     //}
 
 
-                    this.FileList = new ObservableCollection<FileAndOrder>(list);
+                  //  this.FileList = new ObservableCollection<FileAndOrder>(list);
 
                 }
 
