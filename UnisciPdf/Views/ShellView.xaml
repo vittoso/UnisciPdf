@@ -8,9 +8,9 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600"
-             Height="400" Width="600">
-    <Grid >
+             d:DesignHeight="450" d:DesignWidth="700"
+             Height="450" Width="700">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition />
@@ -76,12 +76,13 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="60"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Content="{x:Static prop:Resources.lblDestinationFolder}"/>
                 <Button Grid.Row="1" x:Name="SelectFolder" Content="{x:Static prop:Resources.btnChooseFolder}" Width="80" Click="SelectFolder_Click"/>
-                <Label Grid.Row="2" HorizontalAlignment="Stretch"  x:Name="DestinationFilePath"></Label>
+                <TextBlock Grid.Row="2" HorizontalAlignment="Stretch"  x:Name="DestinationFilePath" TextWrapping="WrapWithOverflow" VerticalAlignment="Center"></TextBlock>
                 <Label Grid.Row="3" Content="{x:Static prop:Resources.lblDestinationFileName}"/>
                 <TextBox Grid.Row="4" x:Name="DestinationFileName" />
                 <Grid Grid.Row="5">
@@ -98,8 +99,35 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="30"/>
                     </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"  Content="{x:Static prop:Resources.lblCutMargins}" />
+                    <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="CutMargins"  IsChecked="{Binding Path=PdfCompressionOptions.CutMargins, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
+                
+                <Grid Grid.Row="7" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="5"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0"  Content="{x:Static prop:Resources.lblTop}" />
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="PdfCompressionOptions_CutMarginsTopPoints"  IsEnabled="{Binding Path=PdfCompressionOptions.CutMargins, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <Label Grid.Column="3" Grid.Row="0"  Content="{x:Static prop:Resources.lblBottom}" />
+                    <TextBox Grid.Column="4" Grid.Row="0" x:Name="PdfCompressionOptions_CutMarginsBottomPoints" IsEnabled="{Binding Path=PdfCompressionOptions.CutMargins, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <Label Grid.Column="0" Grid.Row="2"  Content="{x:Static prop:Resources.lblLeft}" />
+                    <TextBox Grid.Column="1" Grid.Row="2" x:Name="PdfCompressionOptions_CutMarginsLeftPoints" IsEnabled="{Binding Path=PdfCompressionOptions.CutMargins, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <Label Grid.Column="3" Grid.Row="2"  Content="{x:Static prop:Resources.lblRight}" />
+                    <TextBox Grid.Column="4" Grid.Row="2" x:Name="PdfCompressionOptions_CutMarginsRightPoints"  IsEnabled="{Binding Path=PdfCompressionOptions.CutMargins, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
             </Grid>
 
         </GroupBox>

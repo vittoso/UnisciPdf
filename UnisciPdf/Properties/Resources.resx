@@ -156,4 +156,19 @@
   <data name="lblWait" xml:space="preserve">
     <value>Attendere prego...</value>
   </data>
+  <data name="lblCutMargins" xml:space="preserve">
+    <value>Taglio margini (1 in = 25,4mm = 72 pt)</value>
+  </data>
+  <data name="lblBottom" xml:space="preserve">
+    <value>Bottom (pt):</value>
+  </data>
+  <data name="lblLeft" xml:space="preserve">
+    <value>Left (pt):</value>
+  </data>
+  <data name="lblRight" xml:space="preserve">
+    <value>Right (pt):</value>
+  </data>
+  <data name="lblTop" xml:space="preserve">
+    <value>Top (pt):</value>
+  </data>
 </root>

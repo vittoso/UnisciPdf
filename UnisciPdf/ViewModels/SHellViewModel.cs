@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,7 +17,7 @@ using UnisciPdf.Model;
 namespace UnisciPdf.ViewModels
 {
 
-    public class ShellViewModel : PropertyChangedBase, IHaveDisplayName
+    public class ShellViewModel : Screen, IHaveDisplayName
     {
 
         public ShellViewModel()
@@ -22,6 +25,16 @@ namespace UnisciPdf.ViewModels
             this.fileIdentificationService = new FileIdentificationService();
             this.pdfService = new PdfService();
             this.PdfCompressionOptions = pdfService.GetDefaultCompressionOptions();
+
+            this.DestinationFileName = ".pdf";
+
+            if (Execute.InDesignMode)
+                LoadDesignData();
+        }
+
+        private void LoadDesignData()
+        {
+
         }
 
 
@@ -74,6 +87,7 @@ namespace UnisciPdf.ViewModels
 
 
         private string destinationFileName = null;
+
         public string DestinationFileName
         {
             get { return destinationFileName; }
@@ -90,6 +104,8 @@ namespace UnisciPdf.ViewModels
         }
 
         private string destinationFilePath = null;
+
+
         public string DestinationFilePath
         {
             get { return destinationFilePath; }
@@ -97,6 +113,7 @@ namespace UnisciPdf.ViewModels
             {
                 if (destinationFilePath != value)
                 {
+
                     destinationFilePath = value;
                     NotifyOfPropertyChange(() => this.DestinationFilePath);
                     NotifyOfPropertyChange(() => this.CanCreateFile);
@@ -160,7 +177,7 @@ namespace UnisciPdf.ViewModels
         public void Reset()
         {
             FileList.Clear();
-            DestinationFileName = string.Empty;
+            DestinationFileName = ".pdf";
         }
 
         public bool CanReset
@@ -170,6 +187,10 @@ namespace UnisciPdf.ViewModels
 
         public void CreateFile()
         {
+            if (Path.GetExtension(DestinationFileName) != ".pdf")
+                DestinationFileName = string.Concat(DestinationFileName, ".pdf");
+
+
             this.ShellIsBusy = true;
             List<string> fileListOrdered = FileList.OrderBy(d => d.Number).Select(d => d.FileFullPath).ToList();
 
@@ -195,7 +216,17 @@ namespace UnisciPdf.ViewModels
                 if (string.IsNullOrWhiteSpace(DestinationFileName))
                     return false;
 
-                if (Path.GetExtension(DestinationFileName) == null || Path.GetExtension(DestinationFileName).ToLower() != ".pdf")
+                string filenameWithoutExt = Path.GetFileNameWithoutExtension(DestinationFileName);
+
+                if (filenameWithoutExt == null || filenameWithoutExt.Length == 0)
+                    return false;
+
+                if (filenameWithoutExt.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+                    return false;
+
+                string extension = Path.GetExtension(DestinationFileName);
+
+                if (extension.Length > 0 && extension.ToLower() != ".pdf")
                     return false;
 
                 return true;
@@ -213,7 +244,7 @@ namespace UnisciPdf.ViewModels
 
                 if (value != null)
                 {
-                   // var list = new List<FileAndOrder>(this.FileList.OrderBy(f => f.Number));
+                    // var list = new List<FileAndOrder>(this.FileList.OrderBy(f => f.Number));
 
                     //// collection does not start from 1
                     //if (!list.Any(f => f.Number == 1))
@@ -232,7 +263,7 @@ namespace UnisciPdf.ViewModels
                     //}
 
 
-                  //  this.FileList = new ObservableCollection<FileAndOrder>(list);
+                    //  this.FileList = new ObservableCollection<FileAndOrder>(list);
 
                 }
 
@@ -276,7 +307,7 @@ namespace UnisciPdf.ViewModels
 
                 this.FileList = new ObservableCollection<FileAndOrder>(list.OrderBy(l => l.Number));
 
-                if (FileList.Any())
+                if (FileList.Any() && string.IsNullOrEmpty(this.DestinationFilePath))
                 {
                     string dir = Path.GetDirectoryName(FileList.FirstOrDefault().FileFullPath);
                     if (FileList.All(d => Path.GetDirectoryName(d.FileFullPath) == dir))
@@ -292,5 +323,31 @@ namespace UnisciPdf.ViewModels
         }
 
         #endregion
+
+        protected override void OnDeactivate(bool close)
+        {
+            Properties.Settings.Default.DestinationFilePath = this.DestinationFilePath;
+            Properties.Settings.Default.CompressionEnabled = this.CompressionEnabled;
+            Properties.Settings.Default.CutMargins = this.PdfCompressionOptions.CutMargins;
+            Properties.Settings.Default.CutMargins_Top_Points = this.PdfCompressionOptions.CutMarginsTopPoints;
+            Properties.Settings.Default.CutMargins_Bottom_Points = this.PdfCompressionOptions.CutMarginsBottomPoints;
+            Properties.Settings.Default.CutMargins_Left_Points = this.PdfCompressionOptions.CutMarginsLeftPoints;
+            Properties.Settings.Default.CutMargins_Right_Points = this.PdfCompressionOptions.CutMarginsRightPoints;
+            Properties.Settings.Default.Save();
+            base.OnDeactivate(close);
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+
+            this.DestinationFilePath = Properties.Settings.Default.DestinationFilePath;
+            this.CompressionEnabled = Properties.Settings.Default.CompressionEnabled;
+            this.PdfCompressionOptions.CutMargins = Properties.Settings.Default.CutMargins;
+            this.PdfCompressionOptions.CutMarginsTopPoints = Properties.Settings.Default.CutMargins_Top_Points;
+            this.PdfCompressionOptions.CutMarginsBottomPoints = Properties.Settings.Default.CutMargins_Bottom_Points;
+            this.PdfCompressionOptions.CutMarginsLeftPoints = Properties.Settings.Default.CutMargins_Left_Points;
+            this.PdfCompressionOptions.CutMarginsRightPoints =  Properties.Settings.Default.CutMargins_Right_Points;
+        }
     }
 }

@@ -914,6 +914,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
         "Release"
@@ -3016,15 +3024,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UnisciPdf"
-        "ProductCode" = "8:{B2511698-471D-4C31-B693-C619FCDDCC6E}"
-        "PackageCode" = "8:{0548702D-D646-482C-A8F8-503AF7CBBE8B}"
+        "ProductCode" = "8:{CDB91A47-998E-465A-8F39-5239B7DA4330}"
+        "PackageCode" = "8:{08D4C1A6-A261-4E35-8DE7-AEDF19D1A015}"
         "UpgradeCode" = "8:{DBCC9754-1CEB-43F5-A5E4-A6DC4AFD2ECF}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.1.0"
+        "ProductVersion" = "8:0.1.1"
         "Manufacturer" = "8:VS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

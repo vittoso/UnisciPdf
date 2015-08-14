@@ -40,21 +40,43 @@ namespace UnisciPdf.BusinessLogic
 
                     for (int i = 0; i < reader.NumberOfPages; i++)
                     {
-                        doc.NewPage();
-                        page = writer.GetImportedPage(reader, i + 1);
-                        //   cb.AddTemplate(page, r.Width, r.Height, false);
                         if (r != null)
                         {
                             doc.SetPageSize(r);
                         }
 
-                        var widthFactor = doc.PageSize.Width / page.Width;
-                        var heightFactor = doc.PageSize.Height / page.Height;
-                        var factor = Math.Min(widthFactor, heightFactor);
+                        doc.NewPage();
+                        page = writer.GetImportedPage(reader, i + 1);
+                        //   cb.AddTemplate(page, r.Width, r.Height, false);
 
-                        var offsetX = (doc.PageSize.Width - (page.Width * factor)) / 2;
-                        var offsetY = (doc.PageSize.Height - (page.Height * factor)) / 2;
-                        cb.AddTemplate(page, factor, 0, 0, factor, offsetX, offsetY);
+
+                        float widthFactor = doc.PageSize.Width / page.Width;
+                        float heightFactor = doc.PageSize.Height / page.Height;
+                        float factor = Math.Min(widthFactor, heightFactor);
+
+                        float offsetX = (doc.PageSize.Width - (page.Width * widthFactor)) / 2;
+                        float offsetY = (doc.PageSize.Height - (page.Height * heightFactor)) / 2;
+
+                        if (options.CutMargins)
+                        {
+                            var widthCutMargins = doc.PageSize.Width < doc.PageSize.Height ? options.CutMarginsLeftPoints + options.CutMarginsRightPoints : options.CutMarginsTopPoints + options.CutMarginsBottomPoints;
+                            var heightCutMargins = doc.PageSize.Width < doc.PageSize.Height ? options.CutMarginsTopPoints + options.CutMarginsBottomPoints : options.CutMarginsLeftPoints + options.CutMarginsRightPoints;
+
+                            var widthDestinationMargins = doc.PageSize.Width < doc.PageSize.Height ? doc.LeftMargin + doc.RightMargin : doc.TopMargin + doc.BottomMargin;
+                            var heightDestinationMargins = doc.PageSize.Width < doc.PageSize.Height ? doc.TopMargin + doc.BottomMargin : doc.LeftMargin + doc.RightMargin;
+
+                            widthFactor = doc.PageSize.Width / (page.Width - widthCutMargins);
+                            heightFactor = doc.PageSize.Height / (page.Height - heightCutMargins);
+                            factor = Math.Min(widthFactor, heightFactor);
+
+                            offsetX = (doc.PageSize.Width - (page.Width * widthFactor)) / 2;
+                            offsetY = (doc.PageSize.Height - (page.Height * heightFactor)) / 2;
+                        }
+
+
+                        cb.AddTemplate(page, widthFactor, 0, 0, heightFactor, offsetX, offsetY);
+
+
                     }
                     writer.FreeReader(reader);
                     reader.Close();
@@ -83,8 +105,8 @@ namespace UnisciPdf.BusinessLogic
                 Ghostscript.NET.GhostscriptVersionInfo version = new Ghostscript.NET.GhostscriptVersionInfo(new System.Version(9, 16, 0), dll, string.Empty, Ghostscript.NET.GhostscriptLicense.GPL);
                 using (Ghostscript.NET.Processor.GhostscriptProcessor processor = new GhostscriptProcessor(version))
                 {
-                   // processor.Processing += new GhostscriptProcessorProcessingEventHandler(ghostscript_Processing);
-                   processor.Process(CreateCompressionGhostScriptArgs(tempFile, destinationFilePath, options), new ConsoleStdIO(false, true, true));
+                    // processor.Processing += new GhostscriptProcessorProcessingEventHandler(ghostscript_Processing);
+                    processor.Process(CreateCompressionGhostScriptArgs(tempFile, destinationFilePath, options), new ConsoleStdIO(false, true, true));
                 }
             }
             finally { File.Delete(tempFile); }
@@ -199,22 +221,22 @@ namespace UnisciPdf.BusinessLogic
             if (options.DownsampleColorImages)
             {
                 gsArgs.Add(@"-dDownsampleColorImages=true");
-                gsArgs.Add(@"-dColorImageResolution="+options.ColorImageResolution);
-                gsArgs.Add(@"-dColorImageDownsampleThreshold="+options.ColorImageDownsampleThreshold);
+                gsArgs.Add(@"-dColorImageResolution=" + options.ColorImageResolution);
+                gsArgs.Add(@"-dColorImageDownsampleThreshold=" + options.ColorImageDownsampleThreshold);
             }
 
             if (options.DownsampleGrayImages)
             {
                 gsArgs.Add(@"-dDownsampleGrayImages=true");
-                gsArgs.Add(@"-dGrayImageResolution="+options.GrayImageResolution);
-                gsArgs.Add(@"-dGrayImageDownsampleThreshold="+options.GrayImageDownsampleThreshold);
+                gsArgs.Add(@"-dGrayImageResolution=" + options.GrayImageResolution);
+                gsArgs.Add(@"-dGrayImageDownsampleThreshold=" + options.GrayImageDownsampleThreshold);
             }
 
             if (options.DownsampleMonoImages)
             {
                 gsArgs.Add(@"-dDownsampleMonoImages=true");
-                gsArgs.Add(@"-dMonoImageResolution="+options.MonoImageResolution);
-                gsArgs.Add(@"-dMonoImageDownsampleThreshold="+options.MonoImageDownsampleThreshold);
+                gsArgs.Add(@"-dMonoImageResolution=" + options.MonoImageResolution);
+                gsArgs.Add(@"-dMonoImageDownsampleThreshold=" + options.MonoImageDownsampleThreshold);
             }
 
             gsArgs.Add(@"-f");
@@ -335,6 +357,13 @@ namespace UnisciPdf.BusinessLogic
         public bool CompressionEnabled { get; set; }
 
         public Rectangle PageSize { get; set; }
+
+        public bool CutMargins { get; set; }
+
+        public int CutMarginsTopPoints { get; set; }
+        public int CutMarginsBottomPoints { get; set; }
+        public int CutMarginsLeftPoints { get; set; }
+        public int CutMarginsRightPoints { get; set; }
 
 
         public bool DownsampleColorImages { get; set; }
