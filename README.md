@@ -9,4 +9,4 @@ Per ulteriori informazioni su AGPL e la licenza di iTextSharp consultare questo 
 
 Il programma usa GhostScript di [Artifex](http://www.artifex.com) per la compressione dei PDF ed è quindi rilasciato sotto licenza AGPLv3. Il codice sorgente è rintracciabile [QUA](http://git.ghostscript.com/?p=ghostpdl.git;a=summary)
 
-Per ulteriori ionformazioni sulla licenza di GhostScript consultare questo [link](http://www.artifex.com/page/licensing-information.html)
+Per ulteriori informazioni sulla licenza di GhostScript consultare questo [link](http://www.artifex.com/page/licensing-information.html)
