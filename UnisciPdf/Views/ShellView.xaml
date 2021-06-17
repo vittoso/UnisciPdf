@@ -77,6 +77,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="60"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -128,6 +129,8 @@
                     <Label Grid.Column="3" Grid.Row="2"  Content="{x:Static prop:Resources.lblRight}" />
                     <TextBox Grid.Column="4" Grid.Row="2" x:Name="PdfCompressionOptions_CutMarginsRightPoints"  IsEnabled="{Binding Path=PdfCompressionOptions.CutMargins, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
+
+                <Button x:Name="ShowOptions" Grid.Row="8" Content="{x:Static prop:Resources.btn_Opzioni}" Margin="15,5,15,0"></Button>
             </Grid>
 
         </GroupBox>

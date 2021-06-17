@@ -79,6 +79,15 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opzioni aggiuntive....
+        /// </summary>
+        public static string btn_Opzioni {
+            get {
+                return ResourceManager.GetString("btn_Opzioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Annulla.
         /// </summary>
         public static string btn_Reset {

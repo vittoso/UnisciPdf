@@ -123,7 +123,11 @@
     <Compile Include="gs\ConsoleStdIO.cs" />
     <Compile Include="gs\DelegateStdIOHandler.cs" />
     <Compile Include="Model\FileAndOrder.cs" />
+    <Compile Include="ViewModels\OptionPopupViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\OptionPopupView.xaml.cs">
+      <DependentUpon>OptionPopupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -160,6 +164,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Views\OptionPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

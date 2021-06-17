@@ -171,4 +171,7 @@
   <data name="lblTop" xml:space="preserve">
     <value>Top (pt):</value>
   </data>
+  <data name="btn_Opzioni" xml:space="preserve">
+    <value>Opzioni aggiuntive...</value>
+  </data>
 </root>

@@ -5,12 +5,14 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using UnisciPdf.BusinessLogic;
 using UnisciPdf.Model;
 
@@ -233,6 +235,18 @@ namespace UnisciPdf.ViewModels
             }
 
         }
+
+        public void ShowOptions()
+        {
+            WindowManager wm = new WindowManager();
+            dynamic settings = new ExpandoObject();
+            //    settings.Width = 200;
+            //   settings.PopupAnimation = PopupAnimation.Fade;
+            //settings.Placement = PlacementMode.Absolute;
+            //settings.HorizontalOffset = SystemParameters.FullPrimaryScreenWidth / 2 - 100;
+            //settings.VerticalOffset = SystemParameters.FullPrimaryScreenHeight / 2 - 50;
+            wm.ShowDialog(new OptionPopupViewModel(this.PdfCompressionOptions), null, settings);
+        }
         #endregion
 
         public void FileNumberEditEnding(DataGridCellEditEndingEventArgs e, object dataContext)
@@ -347,7 +361,7 @@ namespace UnisciPdf.ViewModels
             this.PdfCompressionOptions.CutMarginsTopPoints = Properties.Settings.Default.CutMargins_Top_Points;
             this.PdfCompressionOptions.CutMarginsBottomPoints = Properties.Settings.Default.CutMargins_Bottom_Points;
             this.PdfCompressionOptions.CutMarginsLeftPoints = Properties.Settings.Default.CutMargins_Left_Points;
-            this.PdfCompressionOptions.CutMarginsRightPoints =  Properties.Settings.Default.CutMargins_Right_Points;
+            this.PdfCompressionOptions.CutMarginsRightPoints = Properties.Settings.Default.CutMargins_Right_Points;
         }
     }
 }

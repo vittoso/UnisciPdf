@@ -31,8 +31,8 @@ namespace UnisciPdf.Views
         private void SelectFolder_Click(object sender, RoutedEventArgs e)
         {
             Ookii.Dialogs.Wpf.VistaFolderBrowserDialog d = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
-           d.ShowDialog(this);
-            
+            d.ShowDialog(this);
+
             if (d.SelectedPath != null)
             { // this brakes MVVM a little.... find another way as soon I dig more of Caliburn.Micro
                 ShellViewModel vm = this.DataContext as ShellViewModel;
