@@ -174,4 +174,46 @@
   <data name="btn_Opzioni" xml:space="preserve">
     <value>Opzioni aggiuntive...</value>
   </data>
+  <data name="btn_Close" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="btn_SetDefault" xml:space="preserve">
+    <value>Ripristina Default</value>
+  </data>
+  <data name="grpBoxColors_Header" xml:space="preserve">
+    <value>Colori</value>
+  </data>
+  <data name="grpBoxGreyScale_Header" xml:space="preserve">
+    <value>Scala di grigi</value>
+  </data>
+  <data name="grpBoxMonochrome_Header" xml:space="preserve">
+    <value>Monocromatico</value>
+  </data>
+  <data name="lblCompressColorImages" xml:space="preserve">
+    <value>Comprimi immagini a colori</value>
+  </data>
+  <data name="lblCompressGrayImages" xml:space="preserve">
+    <value>Comprimi immagini in scala di grigi</value>
+  </data>
+  <data name="lblCompressMonoImages" xml:space="preserve">
+    <value>Comprimi immagini monocromatiche</value>
+  </data>
+  <data name="lblDPI" xml:space="preserve">
+    <value>DPI</value>
+  </data>
+  <data name="lblThreshold" xml:space="preserve">
+    <value>Soglia</value>
+  </data>
+  <data name="OptionPopupTitle" xml:space="preserve">
+    <value>Opzioni aggiuntive</value>
+  </data>
+  <data name="grpBoxOther_Header" xml:space="preserve">
+    <value>Altro</value>
+  </data>
+  <data name="lblDetectDuplicateImages" xml:space="preserve">
+    <value>Rileva immagini duplicate</value>
+  </data>
+  <data name="lblForceCYMKtoRGBConversion" xml:space="preserve">
+    <value>Forza conversione CYMK-&gt;RGB</value>
+  </data>
 </root>

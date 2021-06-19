@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnisciPdf.BusinessLogic;
+using UnisciPdf.Properties;
 
 namespace UnisciPdf.ViewModels
 {
-    public class OptionPopupViewModel : ViewAware
+    public class OptionPopupViewModel : Screen
     {
         private PdfCompressionOptions pdfCompressionOptions;
 
@@ -16,6 +17,10 @@ namespace UnisciPdf.ViewModels
         {
             this.pdfCompressionOptions = pdfCompressionOptions;
         }
+
+
+        public override string DisplayName { get => Resources.OptionPopupTitle ; set => base.DisplayName = value; }
+
 
         public bool CompressionEnabled => pdfCompressionOptions.CompressionEnabled;
         public bool ColorCompressionEnabled => pdfCompressionOptions.CompressionEnabled & pdfCompressionOptions.DownsampleColorImages;
@@ -142,6 +147,59 @@ namespace UnisciPdf.ViewModels
                 }
             }
         }
+
+        public bool DetectDuplicateImages
+        {
+            get { return pdfCompressionOptions.DetectDuplicateImages; }
+            set
+            {
+                if (pdfCompressionOptions.DetectDuplicateImages != value)
+                {
+                    pdfCompressionOptions.DetectDuplicateImages = value;
+                    NotifyOfPropertyChange(() => this.DetectDuplicateImages);
+                }
+            }
+        }
+
+        public bool ForceConversionCMYKToRGB
+        {
+            get { return pdfCompressionOptions.ForceConversionCMYKToRGB; }
+            set
+            {
+                if (pdfCompressionOptions.ForceConversionCMYKToRGB != value)
+                {
+                    pdfCompressionOptions.ForceConversionCMYKToRGB = value;
+                    NotifyOfPropertyChange(() => this.ForceConversionCMYKToRGB);
+                }
+            }
+        }
+
+        public void Close()
+        {
+            TryClose(true);
+        }
+
+        public void ResetToDefault()
+        {
+            var defaults = (new PdfService()).GetDefaultCompressionOptions();
+
+            this.DownsampleColorImages = defaults.DownsampleColorImages;
+            this.ColorImageResolution = defaults.ColorImageResolution;
+            this.ColorImageDownsampleThreshold = defaults.ColorImageDownsampleThreshold;
+
+            this.DownsampleGrayImages = defaults.DownsampleGrayImages;
+            this.GrayImageResolution = defaults.GrayImageResolution;
+            this.GrayImageDownsampleThreshold = defaults.GrayImageDownsampleThreshold;
+
+            this.DownsampleMonoImages = defaults.DownsampleMonoImages;
+            this.MonoImageResolution = defaults.MonoImageResolution;
+            this.MonoImageDownsampleThreshold = defaults.MonoImageDownsampleThreshold;
+
+            this.DetectDuplicateImages = defaults.DetectDuplicateImages;
+            this.ForceConversionCMYKToRGB = defaults.ForceConversionCMYKToRGB;
+        }
+
+        public bool CanResetToDefault => true;
     }
 }
 

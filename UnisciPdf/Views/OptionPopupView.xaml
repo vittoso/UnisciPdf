@@ -21,10 +21,12 @@
                 <RowDefinition Height="5"/>
                 <RowDefinition />
                 <RowDefinition Height="5"/>
+                <RowDefinition />
+                <RowDefinition Height="5"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <GroupBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Header="Colori">
+            <GroupBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Header="{x:Static prop:Resources.grpBoxColors_Header}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -39,20 +41,20 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="0" Content="Comprimi immagini a colori"/>
+                    <Label Grid.Column="0" Content="{x:Static prop:Resources.lblCompressColorImages}" Padding="5,0"/>
                     <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="DownsampleColorImages"  IsChecked="{Binding Path=DownsampleColorImages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding Path=CompressionEnabled}"/>
 
-                    <Label Grid.Column="0" Grid.Row="2" Content="DPI"/>
+                    <Label Grid.Column="0" Grid.Row="2" Content="{x:Static prop:Resources.lblDPI}" Padding="5,0"/>
                     <TextBox Grid.Column="1" Grid.Row="2"  x:Name="ColorImageResolution"  IsEnabled="{Binding Path=ColorCompressionEnabled}" />
 
-                    <Label Grid.Column="0" Grid.Row="4" Content="Soglia"/>
+                    <Label Grid.Column="0" Grid.Row="4" Content="{x:Static prop:Resources.lblThreshold}" Padding="5,0"/>
                     <TextBox Grid.Column="1" Grid.Row="4"  x:Name="ColorImageDownsampleThreshold" IsEnabled="{Binding Path=ColorCompressionEnabled}" />
                 </Grid>
 
                
             </GroupBox>
 
-            <GroupBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Header="Scala di grigi">
+            <GroupBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Header="{x:Static prop:Resources.grpBoxGreyScale_Header}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -67,20 +69,20 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="0" Content="Comprimi immagini in scala di grigi"/>
+                    <Label Grid.Column="0" Content="{x:Static prop:Resources.lblCompressGrayImages}" Padding="5,0"/>
                     <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="DownsampleGrayImages"  IsChecked="{Binding Path=DownsampleGrayImages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding Path=CompressionEnabled}"/>
 
-                    <Label Grid.Column="0" Grid.Row="2" Content="DPI"/>
+                    <Label Grid.Column="0" Grid.Row="2" Content="{x:Static prop:Resources.lblDPI}" Padding="5,0"/>
                     <TextBox Grid.Column="1" Grid.Row="2"  x:Name="GrayImageResolution"  IsEnabled="{Binding Path=GrayCompressionEnabled}" />
 
-                    <Label Grid.Column="0" Grid.Row="4" Content="Soglia"/>
+                    <Label Grid.Column="0" Grid.Row="4" Content="{x:Static prop:Resources.lblThreshold}" Padding="5,0"/>
                     <TextBox Grid.Column="1" Grid.Row="4"  x:Name="GrayImageDownsampleThreshold" IsEnabled="{Binding Path=GrayCompressionEnabled}" />
                 </Grid>
 
 
             </GroupBox>
 
-            <GroupBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Header="Monocromatico">
+            <GroupBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Header="{x:Static prop:Resources.grpBoxMonochrome_Header}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -95,19 +97,53 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="0" Content="Comprimi immagini monocromatiche"/>
+                    <Label Grid.Column="0" Content="{x:Static prop:Resources.lblCompressMonoImages}" Padding="5,0"/>
                     <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="DownsampleMonoImages"  IsChecked="{Binding Path=DownsampleMonoImages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding Path=CompressionEnabled}"/>
 
-                    <Label Grid.Column="0" Grid.Row="2" Content="DPI"/>
+                    <Label Grid.Column="0" Grid.Row="2" Content="{x:Static prop:Resources.lblDPI}" Padding="5,0"/>
                     <TextBox Grid.Column="1" Grid.Row="2"  x:Name="MonoImageResolution"  IsEnabled="{Binding Path=MonoCompressionEnabled}" />
 
-                    <Label Grid.Column="0" Grid.Row="4" Content="Soglia"/>
+                    <Label Grid.Column="0" Grid.Row="4" Content="{x:Static prop:Resources.lblThreshold}" Padding="5,0"/>
                     <TextBox Grid.Column="1" Grid.Row="4"  x:Name="MonoImageDownsampleThreshold" IsEnabled="{Binding Path=MonoCompressionEnabled}" />
                 </Grid>
-
-
             </GroupBox>
 
+            <GroupBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="1" Header="{x:Static prop:Resources.grpBoxOther_Header}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="2"/>
+                        <RowDefinition />
+                        <RowDefinition Height="2"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Content="{x:Static prop:Resources.lblDetectDuplicateImages}" Padding="5,0"/>
+                    <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="DetectDuplicateImages"  IsChecked="{Binding Path=DetectDuplicateImages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding Path=CompressionEnabled}"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="{x:Static prop:Resources.lblForceCYMKtoRGBConversion}" Padding="5,0"/>
+                    <CheckBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ForceConversionCMYKToRGB"  IsChecked="{Binding Path=ForceConversionCMYKToRGB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding Path=CompressionEnabled}"/>
+
+
+                </Grid>
+            </GroupBox>
+
+
+            <Grid Grid.Row="8" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="ResetToDefault" Grid.Column="1"  Content="{x:Static prop:Resources.btn_SetDefault}" ></Button>
+                <Button x:Name="Close"  Grid.Column="3"   Content="{x:Static prop:Resources.btn_Close}"></Button>
+            </Grid>
 
 
         </Grid>

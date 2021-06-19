@@ -70,6 +70,15 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chiudi.
+        /// </summary>
+        public static string btn_Close {
+            get {
+                return ResourceManager.GetString("btn_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crea PDF unito.
         /// </summary>
         public static string btn_CreateFile {
@@ -93,6 +102,15 @@ namespace UnisciPdf.Properties {
         public static string btn_Reset {
             get {
                 return ResourceManager.GetString("btn_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ripristina Default.
+        /// </summary>
+        public static string btn_SetDefault {
+            get {
+                return ResourceManager.GetString("btn_SetDefault", resourceCulture);
             }
         }
         
@@ -124,11 +142,38 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Colori.
+        /// </summary>
+        public static string grpBoxColors_Header {
+            get {
+                return ResourceManager.GetString("grpBoxColors_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File da unire.
         /// </summary>
         public static string grpBoxFile_Header {
             get {
                 return ResourceManager.GetString("grpBoxFile_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scala di grigi.
+        /// </summary>
+        public static string grpBoxGreyScale_Header {
+            get {
+                return ResourceManager.GetString("grpBoxGreyScale_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monocromatico.
+        /// </summary>
+        public static string grpBoxMonochrome_Header {
+            get {
+                return ResourceManager.GetString("grpBoxMonochrome_Header", resourceCulture);
             }
         }
         
@@ -142,6 +187,15 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Altro.
+        /// </summary>
+        public static string grpBoxOther_Header {
+            get {
+                return ResourceManager.GetString("grpBoxOther_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bottom (pt):.
         /// </summary>
         public static string lblBottom {
@@ -151,11 +205,38 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comprimi immagini a colori.
+        /// </summary>
+        public static string lblCompressColorImages {
+            get {
+                return ResourceManager.GetString("lblCompressColorImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comprimi immagini in scala di grigi.
+        /// </summary>
+        public static string lblCompressGrayImages {
+            get {
+                return ResourceManager.GetString("lblCompressGrayImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compressione.
         /// </summary>
         public static string lblCompression {
             get {
                 return ResourceManager.GetString("lblCompression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comprimi immagini monocromatiche.
+        /// </summary>
+        public static string lblCompressMonoImages {
+            get {
+                return ResourceManager.GetString("lblCompressMonoImages", resourceCulture);
             }
         }
         
@@ -187,11 +268,38 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rileva immagini duplicate.
+        /// </summary>
+        public static string lblDetectDuplicateImages {
+            get {
+                return ResourceManager.GetString("lblDetectDuplicateImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DPI.
+        /// </summary>
+        public static string lblDPI {
+            get {
+                return ResourceManager.GetString("lblDPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trascinare in questa zona i file pdf.
         /// </summary>
         public static string lblfileDragDrop_Instructions {
             get {
                 return ResourceManager.GetString("lblfileDragDrop_Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forza conversione CYMK-&gt;RGB.
+        /// </summary>
+        public static string lblForceCYMKtoRGBConversion {
+            get {
+                return ResourceManager.GetString("lblForceCYMKtoRGBConversion", resourceCulture);
             }
         }
         
@@ -214,6 +322,15 @@ namespace UnisciPdf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Soglia.
+        /// </summary>
+        public static string lblThreshold {
+            get {
+                return ResourceManager.GetString("lblThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Top (pt):.
         /// </summary>
         public static string lblTop {
@@ -228,6 +345,15 @@ namespace UnisciPdf.Properties {
         public static string lblWait {
             get {
                 return ResourceManager.GetString("lblWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opzioni aggiuntive.
+        /// </summary>
+        public static string OptionPopupTitle {
+            get {
+                return ResourceManager.GetString("OptionPopupTitle", resourceCulture);
             }
         }
     }

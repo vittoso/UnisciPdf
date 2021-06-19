@@ -53,6 +53,20 @@ namespace UnisciPdf.BusinessLogic
                     return number;
             }
 
+            if (char.IsNumber(filenameLower[0]))
+            {
+                int number = 0;
+                int idx = 0;
+                while (char.IsNumber(filenameLower[idx]))
+                {
+                    number = number * 10 + Convert.ToInt32("" + filenameLower[idx]);
+                    ++idx;
+                }
+
+                if (number != 0)
+                    return number;
+            }
+
             return null;
         }
     }

@@ -220,23 +220,35 @@ namespace UnisciPdf.BusinessLogic
 
             if (options.DownsampleColorImages)
             {
-                gsArgs.Add(@"-dDownsampleColorImages=true");
-                gsArgs.Add(@"-dColorImageResolution=" + options.ColorImageResolution);
-                gsArgs.Add(@"-dColorImageDownsampleThreshold=" + options.ColorImageDownsampleThreshold);
+                gsArgs.Add("-dDownsampleColorImages=true");
+                gsArgs.Add($"-dColorImageResolution={options.ColorImageResolution}");
+                gsArgs.Add($"-dColorImageDownsampleThreshold={options.ColorImageDownsampleThreshold}");
             }
 
             if (options.DownsampleGrayImages)
             {
-                gsArgs.Add(@"-dDownsampleGrayImages=true");
-                gsArgs.Add(@"-dGrayImageResolution=" + options.GrayImageResolution);
-                gsArgs.Add(@"-dGrayImageDownsampleThreshold=" + options.GrayImageDownsampleThreshold);
+                gsArgs.Add("-dDownsampleGrayImages=true");
+                gsArgs.Add($"-dGrayImageResolution={options.GrayImageResolution}");
+                gsArgs.Add($"-dGrayImageDownsampleThreshold={options.GrayImageDownsampleThreshold}");
             }
 
             if (options.DownsampleMonoImages)
             {
-                gsArgs.Add(@"-dDownsampleMonoImages=true");
-                gsArgs.Add(@"-dMonoImageResolution=" + options.MonoImageResolution);
-                gsArgs.Add(@"-dMonoImageDownsampleThreshold=" + options.MonoImageDownsampleThreshold);
+                gsArgs.Add("-dDownsampleMonoImages=true");
+                gsArgs.Add($"-dMonoImageResolution={options.MonoImageResolution}");
+                gsArgs.Add($"-dMonoImageDownsampleThreshold={options.MonoImageDownsampleThreshold}");
+            }
+
+            if (options.DetectDuplicateImages)
+                gsArgs.Add("-dDetectDuplicateImages=true");
+
+            // https://gist.github.com/lkraider/f0888da30bc352f9d167dfa4f4fc8213
+            if (options.ForceConversionCMYKToRGB)
+            {
+                gsArgs.Add("-sProcessColorModel=DeviceRGB");
+                gsArgs.Add("-sColorConversionStrategy=sRGB");
+                gsArgs.Add("-sColorConversionStrategyForImages=sRGB");
+                gsArgs.Add("-dConvertCMYKImagesToRGB=true");
             }
 
             gsArgs.Add(@"-f");
@@ -260,7 +272,9 @@ namespace UnisciPdf.BusinessLogic
                 GrayImageDownsampleThreshold = 1.0,
                 DownsampleMonoImages = true,
                 MonoImageResolution = 150,
-                MonoImageDownsampleThreshold = 1.0
+                MonoImageDownsampleThreshold = 1.0,
+                DetectDuplicateImages = false,
+                ForceConversionCMYKToRGB = false
             };
 
             return cmp;
@@ -379,5 +393,7 @@ namespace UnisciPdf.BusinessLogic
         public double MonoImageDownsampleThreshold { get; set; }
 
 
+        public bool DetectDuplicateImages { get; set; }
+        public bool ForceConversionCMYKToRGB { get; set; }
     }
 }

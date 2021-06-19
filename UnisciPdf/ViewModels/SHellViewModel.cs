@@ -47,7 +47,7 @@ namespace UnisciPdf.ViewModels
         #endregion
 
         #region Properties
-        public string DisplayName
+        public override string DisplayName
         {
             get
             {
